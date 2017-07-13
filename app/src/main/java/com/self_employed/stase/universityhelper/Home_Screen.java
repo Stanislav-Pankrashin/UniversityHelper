@@ -24,9 +24,5 @@ public class Home_Screen extends AppCompatActivity {
                 Intent myIntent = new Intent(Home_Screen.this, Semester_Gpa.class);
                 startActivity(myIntent);
         }
-
-
     }
-
-
 }
