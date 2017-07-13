@@ -94,6 +94,13 @@
             android:onClick="addSlider"
             android:text="+ Add Paper" />
 
+        <Button
+            android:id="@+id/RemoveSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="removeSlider"
+            android:text="- Remove Paper" />
+
         <TextView
             android:id="@+id/Output"
             android:layout_width="match_parent"

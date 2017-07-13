@@ -69,7 +69,7 @@ public class Semester_Gpa extends AppCompatActivity {
                 //then gets the id of the corresponding TextView for the SeekBar
                 int intId = getResources().getIdentifier("textView" + targetIndex, "id", getPackageName());
 
-                //then it retrieves that seekbar
+                //then it retrieves that SeekBar
                 TextView targetTextView = (TextView) findViewById(intId);
 
                 //then, set the new text
@@ -117,8 +117,6 @@ public class Semester_Gpa extends AppCompatActivity {
         output.setText("Your Gpa for this semester is: " + df.format(sum / seekBars.size()));
     }
 
-
-
     //This method will add a new slider and label to the page
     public void addSlider(View v){
 
@@ -160,7 +158,7 @@ public class Semester_Gpa extends AppCompatActivity {
         index++;
 
         //Now we create the new SeekBar
-        //the seekbar is inflated from a seekbar resourse
+        //the seekbar is inflated from a SeekBar resource
         SeekBar newBar = (SeekBar) LayoutInflater.from(this).inflate(R.layout.sem_gpa_seekbar, null);
 
         setSeekBarId(newBar, "seekBar" + newViewIndex);
@@ -174,6 +172,38 @@ public class Semester_Gpa extends AppCompatActivity {
         populateSliders();
 
         //and then update the GPA
+        calculate_gpa(new View(this));
+
+    }
+
+    //This method will remove a slider from the page
+    public void removeSlider(View v){
+        //first, find the index that the insertPoint is at
+        int index = 0;
+        int childCount = layout.getChildCount();
+
+        for(int i = 0; i < childCount; i++) {
+            View child = layout.getChildAt(i);
+
+            //if an element does not have an id (which is bad practice), a try catch will make sure there are no errors
+            String id;
+            try{
+                id = getResources().getResourceEntryName(child.getId());
+            }catch(Exception e){
+                id = "NONE";
+            }
+
+            // this finds the index of the insert point
+            if (id.equals("insertPoint")) {
+                index = i;
+                break;
+            }
+        }
+        //Then remove the last textView label and Seekbar
+        layout.removeViewAt(index-1);
+        layout.removeViewAt(index - 2);
+        //then update ui
+        populateSliders();
         calculate_gpa(new View(this));
 
 
