@@ -89,7 +89,6 @@ public class Semester_Gpa extends AppCompatActivity {
                 }catch (Exception e){
                     return "ERROR";
                 }
-
             }
 
             @Override
@@ -104,11 +103,12 @@ public class Semester_Gpa extends AppCompatActivity {
         });
     }
 
-
+    //This method calculates the gpa of the page and updates the result
     private void calculate_gpa(View v){
         double sum = 0;
         for(SeekBar s : seekBars){
-            sum += s.getProgress();
+            //GPA starts at 1, instead of 0 like the SeekBar, so 1 must be added for every seekbar
+            sum += s.getProgress() + 1;
         }
 
         DecimalFormat df = new DecimalFormat("#.000");
@@ -116,6 +116,7 @@ public class Semester_Gpa extends AppCompatActivity {
         TextView output = (TextView) findViewById(R.id.Output);
         output.setText("Your Gpa for this semester is: " + df.format(sum / seekBars.size()));
     }
+
 
 
     //This method will add a new slider and label to the page
@@ -171,6 +172,9 @@ public class Semester_Gpa extends AppCompatActivity {
 
         //Finally we update the sliders arrayList
         populateSliders();
+
+        //and then update the GPA
+        calculate_gpa(new View(this));
 
 
     }
