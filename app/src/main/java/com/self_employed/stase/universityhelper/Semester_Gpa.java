@@ -1,5 +1,6 @@
 package com.self_employed.stase.universityhelper;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +10,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Semester_Gpa extends AppCompatActivity {
+    //the minimum and maximum papers that you can have on the screen
+    final static private int MAX_PAPERS = 10;
+    final static private int MIN_PAPERS = 1;
+
     LinearLayout layout;
     ArrayList<SeekBar> seekBars;
 
@@ -119,8 +125,14 @@ public class Semester_Gpa extends AppCompatActivity {
 
     //This method will add a new slider and label to the page
     public void addSlider(View v){
+        //first, check that the paper constraints are met
+        if(seekBars.size() >= MAX_PAPERS){
+            displayConstraintToast("The maximum number of papers is " + MAX_PAPERS);
+            return;
+        }
 
-        //first, find the index that the insertPoint is at
+
+        //then, find the index that the insertPoint is at
         int index = 0;
         int childCount = layout.getChildCount();
 
@@ -178,7 +190,14 @@ public class Semester_Gpa extends AppCompatActivity {
 
     //This method will remove a slider from the page
     public void removeSlider(View v){
-        //first, find the index that the insertPoint is at
+        //first, check that the paper constraints are met
+        if(seekBars.size() <= MIN_PAPERS){
+            displayConstraintToast("The minimum number of papers is " + MIN_PAPERS);
+            return;
+        }
+
+
+        //then, find the index that the insertPoint is at
         int index = 0;
         int childCount = layout.getChildCount();
 
@@ -207,6 +226,14 @@ public class Semester_Gpa extends AppCompatActivity {
         calculate_gpa(new View(this));
 
 
+    }
+
+    public void displayConstraintToast(String message){
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, message, duration);
+        toast.show();
     }
 
     public void setTextViewId(TextView tv, String id){

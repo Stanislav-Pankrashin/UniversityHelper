@@ -6,110 +6,156 @@
     android:layout_height="match_parent"
     tools:context="com.self_employed.stase.universityhelper.Semester_Gpa">
 
-    <LinearLayout
-        android:layout_width="368dp"
+    <RelativeLayout
+        android:layout_width="344dp"
         android:layout_height="495dp"
-        android:orientation="vertical"
-        android:id="@+id/main_layout"
-        tools:layout_editor_absoluteX="9dp"
+        android:layout_margin="8dp"
+        tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
-        <TextView
-            android:id="@+id/introBlurb"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="This is a calculator to calculate your Gpa for a semester"
-            android:textSize="40px" />
+            android:orientation="vertical"
+            android:layout_above="@+id/linearLayout2"
+            android:layout_alignParentTop="true">
 
-        <Space
+            <TextView
+                android:id="@+id/introBlurb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This is a calculator to calculate your Gpa for a semester"
+                android:textSize="50px" />
 
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:scrollbarStyle="outsideInset"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp">
 
-        <TextView
-            android:id="@+id/textView1"
+                <LinearLayout
+                    android:id="@+id/main_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:layout_editor_absoluteX="9dp"
+                    tools:layout_editor_absoluteY="8dp">
+
+                    <Space
+
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Paper 1: B-" />
+
+                    <SeekBar
+                        android:id="@+id/seekBar1"
+                        style="@style/Widget.AppCompat.SeekBar.Discrete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="8"
+                        android:progress="3" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Paper 2: B-" />
+
+                    <SeekBar
+                        android:id="@+id/seekBar2"
+                        style="@style/Widget.AppCompat.SeekBar.Discrete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="8"
+                        android:progress="3" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Paper 3: B-" />
+
+                    <SeekBar
+                        android:id="@+id/seekBar3"
+                        style="@style/Widget.AppCompat.SeekBar.Discrete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="8"
+                        android:progress="3" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Paper 4: B-" />
+
+                    <SeekBar
+                        android:id="@+id/seekBar4"
+                        style="@style/Widget.AppCompat.SeekBar.Discrete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="8"
+                        android:progress="3" />
+
+                    <Space
+                        android:id="@+id/insertPoint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paper 1: B-" />
+            android:layout_alignParentBottom="true"
 
-        <SeekBar
-            android:id="@+id/seekBar1"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="8"
-            android:progress="3" />
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp"
+            android:id="@+id/linearLayout2">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Paper 2: B-" />
+            <Button
+                android:id="@+id/addSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="addSlider"
+                android:text="+ Add\n Paper"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
 
-        <SeekBar
-            android:id="@+id/seekBar2"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="8"
-            android:progress="3" />
+            <Button
+                android:id="@+id/RemoveSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="removeSlider"
+                android:text="- Remove Paper"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Paper 3: B-" />
+            <TextView
+                android:id="@+id/Output"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:text="Your Gpa for this semester is: 4.000"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="480dp" />
+        </LinearLayout>
 
-        <SeekBar
-            android:id="@+id/seekBar3"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="8"
-            android:progress="3" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Paper 4: B-" />
-
-        <SeekBar
-            android:id="@+id/seekBar4"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="8"
-            android:progress="3" />
-
-        <Space
-            android:id="@+id/insertPoint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/addSlider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="addSlider"
-            android:text="+ Add Paper" />
-
-        <Button
-            android:id="@+id/RemoveSlider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="removeSlider"
-            android:text="- Remove Paper" />
-
-        <TextView
-            android:id="@+id/Output"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:text="Your Gpa for this semester is: 4.000"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="480dp" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
