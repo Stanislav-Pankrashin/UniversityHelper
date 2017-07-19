@@ -16,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Semester_Gpa"></activity>
+        <activity
+            android:name=".Semester_Gpa"
+            android:parentActivityName=".Home_Screen"></activity>
+        <activity android:name=".PaperGpaCalc"></activity>
     </application>
 
 </manifest>

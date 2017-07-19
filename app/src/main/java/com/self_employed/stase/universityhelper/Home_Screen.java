@@ -18,10 +18,14 @@ public class Home_Screen extends AppCompatActivity {
 
     public void buttonClicked(View v){
         int id = v.getId();
+        Intent myIntent;
 
         switch (id){
             case R.id.button1:
-                Intent myIntent = new Intent(Home_Screen.this, Semester_Gpa.class);
+                myIntent = new Intent(Home_Screen.this, Semester_Gpa.class);
+                startActivity(myIntent);
+            case R.id.button2:
+                myIntent = new Intent(Home_Screen.this, PaperGpaCalc.class);
                 startActivity(myIntent);
         }
     }

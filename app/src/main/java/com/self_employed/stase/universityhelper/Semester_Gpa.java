@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Semester_Gpa extends AppCompatActivity {
     //the minimum and maximum papers that you can have on the screen
-    final static private int MAX_PAPERS = 10;
+    final static private int MAX_PAPERS = 9;
     final static private int MIN_PAPERS = 1;
 
     LinearLayout layout;
@@ -28,6 +28,15 @@ public class Semester_Gpa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_semester__gpa);
 
+        layout = (LinearLayout) findViewById(R.id.main_layout);
+
+        //add a back button TODO
+        try {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getActionBar().setHomeButtonEnabled(true);
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }catch (Exception e){}
+
         //gets all current sliders on the page
         populateSliders();
         addChangeListeners();
@@ -35,7 +44,7 @@ public class Semester_Gpa extends AppCompatActivity {
 
     //This method populates the ArrayList with all the current sliders on the page
     private void populateSliders(){
-        layout = (LinearLayout) findViewById(R.id.main_layout);
+
         seekBars = new ArrayList<>();
 
         double childCount = layout.getChildCount();
@@ -268,6 +277,48 @@ public class Semester_Gpa extends AppCompatActivity {
             case "textView10":
                 tv.setId(R.id.textView10);
                 return;
+            case "textView11":
+                tv.setId(R.id.textView11);
+                return;
+            case "textView12":
+                tv.setId(R.id.textView12);
+                return;
+            case "textView13":
+                tv.setId(R.id.textView13);
+                return;
+            case "textView14":
+                tv.setId(R.id.textView14);
+                return;
+            case "textView15":
+                tv.setId(R.id.textView15);
+                return;
+            case "textView16":
+                tv.setId(R.id.textView16);
+                return;
+            case "textView17":
+                tv.setId(R.id.textView17);
+                return;
+            case "textView18":
+                tv.setId(R.id.textView18);
+                return;
+            case "textView19":
+                tv.setId(R.id.textView19);
+                return;
+            case "textView20":
+                tv.setId(R.id.textView20);
+                return;
+            case "textView21":
+                tv.setId(R.id.textView21);
+                return;
+            case "textView22":
+                tv.setId(R.id.textView22);
+                return;
+            case "textView23":
+                tv.setId(R.id.textView23);
+                return;
+            case "textView24":
+                tv.setId(R.id.textView24);
+                return;
         }
 
     }
@@ -303,6 +354,48 @@ public class Semester_Gpa extends AppCompatActivity {
                 return;
             case "seekBar10":
                 sb.setId(R.id.seekBar10);
+                return;
+            case "seekBar11":
+                sb.setId(R.id.seekBar11);
+                return;
+            case "seekBar12":
+                sb.setId(R.id.seekBar12);
+                return;
+            case "seekBar13":
+                sb.setId(R.id.seekBar13);
+                return;
+            case "seekBar14":
+                sb.setId(R.id.seekBar14);
+                return;
+            case "seekBar15":
+                sb.setId(R.id.seekBar15);
+                return;
+            case "seekBar16":
+                sb.setId(R.id.seekBar16);
+                return;
+            case "seekBar17":
+                sb.setId(R.id.seekBar17);
+                return;
+            case "seekBar18":
+                sb.setId(R.id.seekBar18);
+                return;
+            case "seekBar19":
+                sb.setId(R.id.seekBar19);
+                return;
+            case "seekBar20":
+                sb.setId(R.id.seekBar20);
+                return;
+            case "seekBar21":
+                sb.setId(R.id.seekBar21);
+                return;
+            case "seekBar22":
+                sb.setId(R.id.seekBar22);
+                return;
+            case "seekBar23":
+                sb.setId(R.id.seekBar23);
+                return;
+            case "seekBar24":
+                sb.setId(R.id.seekBar24);
                 return;
         }
     }
