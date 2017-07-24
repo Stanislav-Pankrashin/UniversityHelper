@@ -8,20 +8,20 @@
     >
 
     <RelativeLayout
-        android:layout_width="368dp"
         android:id="@+id/main_layout"
+        android:layout_width="368dp"
         android:layout_height="495dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
         android:layout_margin="8dp"
-        >
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp"
-            >
+            android:layout_above="@+id/linearLayout3"
+            android:layout_alignParentTop="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,6 +71,12 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/labElementContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"></LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -108,6 +114,13 @@
                             android:textOn="▲" />
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/assignmentElementContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"></LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -145,6 +158,14 @@
                             android:textOn="▲" />
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/testElementContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"></LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -182,6 +203,13 @@
                             android:textOn="▲" />
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/examElementContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"></LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -190,11 +218,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_alignParentBottom="true"
+            android:orientation="vertical"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp"
-            >
+            android:id="@+id/linearLayout3">
 
             <TextView
                 android:id="@+id/targetGradeText"

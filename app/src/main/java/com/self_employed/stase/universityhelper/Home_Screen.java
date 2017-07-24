@@ -24,9 +24,11 @@ public class Home_Screen extends AppCompatActivity {
             case R.id.button1:
                 myIntent = new Intent(Home_Screen.this, Semester_Gpa.class);
                 startActivity(myIntent);
+                break;
             case R.id.button2:
                 myIntent = new Intent(Home_Screen.this, PaperGpaCalc.class);
                 startActivity(myIntent);
+                break;
         }
     }
 }

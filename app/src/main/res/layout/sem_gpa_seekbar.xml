@@ -3,7 +3,7 @@
     style="@style/Widget.AppCompat.SeekBar.Discrete"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:max="8"
-    android:progress="3" >
+    android:max="9"
+    android:progress="4" >
 
 </SeekBar>

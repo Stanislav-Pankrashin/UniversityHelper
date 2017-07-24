@@ -13,9 +13,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class PaperGpaCalc extends AppCompatActivity {
-    private ArrayList<Spinner> spinners;
     //private RelativeLayout layout;
+    //I'm not super happy about hardcoding these names.
     static final String[] SPINNER_NAMES = {"labSpinner", "assignmentSpinner", "testSpinner", "examSpinner"};
+    //collections for data calculations
+    private ArrayList<Spinner> spinners;
+    private ArrayList<LinearLayout> labElements;
+    private ArrayList<LinearLayout> assignmentElements;
+    private ArrayList<LinearLayout> testElements;
+    private ArrayList<LinearLayout> examElements;
 
 
     @Override
@@ -68,26 +74,30 @@ public class PaperGpaCalc extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String str_id = getResources().getResourceEntryName(parent.getId());
 
-                //return if the position is 0, because this is the default instantiated position
-                if(position == 0){
-                    return;
-                }
-
                 if(str_id.contains("lab")){
                     LinearLayout parentLayout = (LinearLayout) parent.getParent().getParent();
-                    int insertIndex = parentLayout.getChildCount();
-
-                    for(int i = 1; i <= position; i++) {
-                        PaperGpaCalc.this.inflateLayout(parentLayout, insertIndex);
-                        insertIndex++;
-                    }
+                    //get the linearLayout that you will insert the elements into
+                    parentLayout = (LinearLayout) parentLayout.getChildAt(1);
+                    PaperGpaCalc.this.adjustGroup(parentLayout, position, "lab");
 
 
                 }else if (str_id.contains("assignment")){
+                    LinearLayout parentLayout = (LinearLayout) parent.getParent().getParent();
+                    //get the linearLayout that you will insert the elements into
+                    parentLayout = (LinearLayout) parentLayout.getChildAt(1);
+                    PaperGpaCalc.this.adjustGroup(parentLayout, position, "assignment");
 
                 }else if (str_id.contains("test")){
+                    LinearLayout parentLayout = (LinearLayout) parent.getParent().getParent();
+                    //get the linearLayout that you will insert the elements into
+                    parentLayout = (LinearLayout) parentLayout.getChildAt(1);
+                    PaperGpaCalc.this.adjustGroup(parentLayout, position, "test");
 
                 }else if (str_id.contains("exam")){
+                    LinearLayout parentLayout = (LinearLayout) parent.getParent().getParent();
+                    //get the linearLayout that you will insert the elements into
+                    parentLayout = (LinearLayout) parentLayout.getChildAt(1);
+                    PaperGpaCalc.this.adjustGroup(parentLayout, position, "exam");
 
                 }
             }
@@ -99,11 +109,40 @@ public class PaperGpaCalc extends AppCompatActivity {
         });
     }
 
-    public void inflateLayout(LinearLayout parent, int index){
+    //this method adjusts the number of elements in a segment
+    private void adjustGroup(LinearLayout parent, int count, String groupName){
+        //get the current number of elements
+        int currentCount = parent.getChildCount();
+        //if the current number of elements is greater than the desired amount, then remove the necessary amount
+        if (currentCount > count){
+            int toRemove = currentCount - count;
+            for(; toRemove != 0; toRemove--){
+                parent.removeViewAt(parent.getChildCount() - 1);
+            }
+        }else{ // else, add the required amount
+            int toAdd = count - currentCount;
+            for(; toAdd != 0; toAdd--) {
+                int insertIndex = parent.getChildCount();
+                inflateElement(parent, insertIndex, groupName);
+            }
+        }
+    }
+
+    //this method inflates a new element in one of the tabs
+    public void inflateElement(LinearLayout parent, int index, String groupName){
         LinearLayout newView = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.paper_element, null);
+
+        TextView tv = (TextView) newView.getChildAt(0);
+        //set the correct text
+        tv.setText(groupName + index + 1 + ":");
+        //set the id for the entire element
+        newView.setId(IdGetter.getter().getId(groupName + "Element", index + 1));
+
         parent.addView(newView, index);
     }
 
+
+    //this method sets up the number spinners for the page
     private void setUpSpinners(){
         getSpinners();
         setSpinnerChoices();
