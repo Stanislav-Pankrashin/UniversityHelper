@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,10 +20,10 @@ public class PaperGpaCalc extends AppCompatActivity {
     static final String[] SPINNER_NAMES = {"labSpinner", "assignmentSpinner", "testSpinner", "examSpinner"};
     //collections for data calculations
     private ArrayList<Spinner> spinners;
-    private ArrayList<LinearLayout> labElements;
-    private ArrayList<LinearLayout> assignmentElements;
-    private ArrayList<LinearLayout> testElements;
-    private ArrayList<LinearLayout> examElements;
+    private ArrayList<SemGpaElement> labElements;
+    private ArrayList<SemGpaElement> assignmentElements;
+    private ArrayList<SemGpaElement> testElements;
+    private ArrayList<SemGpaElement> examElements;
 
 
     @Override
@@ -30,8 +32,36 @@ public class PaperGpaCalc extends AppCompatActivity {
         setContentView(R.layout.activity_paper_gpa_calc);
 
         //layout = (RelativeLayout) findViewById(R.id.main_layout);
-
         setUpSpinners();
+
+        //add functionality to the calculate button
+        setUpCalculate();
+
+        //set up the data collection arrays
+        labElements = new ArrayList<>();
+        assignmentElements = new ArrayList<>();
+        testElements = new ArrayList<>();
+        examElements = new ArrayList<>();
+    }
+
+    //this method adds the onClick listener to the calculate Unknowns button
+    private void setUpCalculate(){
+        Button b = (Button) findViewById(R.id.calculateButton);
+
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tv = (TextView) findViewById(R.id.outputText);
+                double total = 0;
+
+                //iterate through each elementGroup
+                for(SemGpaElement e:labElements){
+                    //TODO
+                }
+
+
+            }
+        });
     }
 
     //this method populates the spinners array with all of the spinners on the page
@@ -118,6 +148,8 @@ public class PaperGpaCalc extends AppCompatActivity {
             int toRemove = currentCount - count;
             for(; toRemove != 0; toRemove--){
                 parent.removeViewAt(parent.getChildCount() - 1);
+                //make sure to remove the element from data collection array
+                popElementFromArray(groupName);
             }
         }else{ // else, add the required amount
             int toAdd = count - currentCount;
@@ -139,6 +171,48 @@ public class PaperGpaCalc extends AppCompatActivity {
         newView.setId(IdGetter.getter().getId(groupName + "Element", index + 1));
 
         parent.addView(newView, index);
+
+        //Then we add the element to the relevant arraylist for logic purposes
+        addElementToArray(newView, groupName);
+    }
+
+    //this adds an element to an array. first by creating a new dataStructure object, then storing that in the correct array
+    private void addElementToArray(View v, String groupName){
+        SemGpaElement struct = new SemGpaElement((LinearLayout) v);
+
+        switch (groupName){
+            case "lab":
+                labElements.add(struct);
+                break;
+            case "assignment":
+                assignmentElements.add(struct);
+                break;
+            case "test":
+                testElements.add(struct);
+                break;
+            case "exam":
+                examElements.add(struct);
+                break;
+        }
+
+    }
+
+    //this method removes the last element from one of these arrays
+    private void popElementFromArray(String groupName){
+        switch (groupName){
+            case "labElement":
+                labElements.remove(labElements.size() - 1);
+                break;
+            case "assignmentElement":
+                assignmentElements.remove(assignmentElements.size() - 1);
+                break;
+            case "testElement":
+                testElements.remove(testElements.size() - 1);
+                break;
+            case "examElement":
+                examElements.remove(examElements.size() - 1);
+                break;
+        }
     }
 
 
