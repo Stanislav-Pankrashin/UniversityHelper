@@ -159,7 +159,7 @@ public class Semester_Gpa extends AppCompatActivity {
         try{
             String[] grades = {"D- D D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A", "A+"};
             //the casting of double to int removes all decimal numbers, rounded down
-            return grades[(int) (gpa)];
+            return grades[(int) gpa];
         }catch (Exception e){
             return "ERROR";
         }

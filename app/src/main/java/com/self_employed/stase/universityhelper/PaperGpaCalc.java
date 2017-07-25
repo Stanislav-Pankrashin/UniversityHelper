@@ -9,10 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PaperGpaCalc extends AppCompatActivity {
     //private RelativeLayout layout;
@@ -20,10 +22,11 @@ public class PaperGpaCalc extends AppCompatActivity {
     static final String[] SPINNER_NAMES = {"labSpinner", "assignmentSpinner", "testSpinner", "examSpinner"};
     //collections for data calculations
     private ArrayList<Spinner> spinners;
-    private ArrayList<SemGpaElement> labElements;
-    private ArrayList<SemGpaElement> assignmentElements;
-    private ArrayList<SemGpaElement> testElements;
-    private ArrayList<SemGpaElement> examElements;
+    private ArrayList<PaperGpaElement> labElements;
+    private ArrayList<PaperGpaElement> assignmentElements;
+    private ArrayList<PaperGpaElement> testElements;
+    private ArrayList<PaperGpaElement> examElements;
+    private ArrayList<ArrayList<PaperGpaElement>> masterArray;
 
 
     @Override
@@ -38,10 +41,19 @@ public class PaperGpaCalc extends AppCompatActivity {
         setUpCalculate();
 
         //set up the data collection arrays
+        initialiseDataArrays();
+    }
+
+    //this method initialises the data collection arrays
+    private void initialiseDataArrays(){
+        //set up the data collection arrays
         labElements = new ArrayList<>();
         assignmentElements = new ArrayList<>();
         testElements = new ArrayList<>();
         examElements = new ArrayList<>();
+        masterArray = new ArrayList<>();
+
+        masterArray.addAll(Arrays.asList(labElements, assignmentElements, testElements, examElements));
     }
 
     //this method adds the onClick listener to the calculate Unknowns button
@@ -51,16 +63,9 @@ public class PaperGpaCalc extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView tv = (TextView) findViewById(R.id.outputText);
-                double total = 0;
-
-                //iterate through each elementGroup
-                for(SemGpaElement e:labElements){
-                    //TODO
-                }
-
-
+                PaperGpaCalc.this.calculateTotal();
             }
+
         });
     }
 
@@ -178,7 +183,7 @@ public class PaperGpaCalc extends AppCompatActivity {
 
     //this adds an element to an array. first by creating a new dataStructure object, then storing that in the correct array
     private void addElementToArray(View v, String groupName){
-        SemGpaElement struct = new SemGpaElement((LinearLayout) v);
+        PaperGpaElement struct = new PaperGpaElement((LinearLayout) v);
 
         switch (groupName){
             case "lab":
@@ -212,6 +217,83 @@ public class PaperGpaCalc extends AppCompatActivity {
             case "examElement":
                 examElements.remove(examElements.size() - 1);
                 break;
+        }
+    }
+
+    //this method calculates the total grade for all elements on the page
+    //due to the nature of the getContributionTotal() method of PaperGpaElement, any elements which are not fully filled out will be ignored
+    private void calculateTotal(){
+        TextView output = (TextView) findViewById(R.id.outputText);
+        double marks = 0;
+        double totalWorth = 0;
+
+        //iterate through each collection
+        for(ArrayList<PaperGpaElement> e: masterArray){
+            for(PaperGpaElement i: e){
+                marks += i.getContributionToTotal();
+                totalWorth += i.getWeight();
+
+            }
+        }
+
+        double percentage = (marks / totalWorth) * 100;
+
+        //then do some formatting with the answer
+        DecimalFormat df = new DecimalFormat("#.00");
+        String rawPercentage = df.format(marks);
+        String currentPercentage = df.format(percentage);
+
+        String outputText = String.format("Currently you are at %s%% (%s)\n" +
+                                            "Total marks to total %s", currentPercentage,getGrade(percentage) , rawPercentage);
+
+        output.setText(outputText);
+
+    }
+
+    //this method returns the grade symbol out of a number out of 100
+    private String getGrade(double number){
+        if(isBetween(number, 0, 50)){
+            return "D- D D+";
+        }else if (isBetween(number, 50, 55)){
+            return "C-";
+        }else if (isBetween(number, 55, 60)){
+            return "C";
+        }else if (isBetween(number, 60, 65)){
+            return "C+";
+        }else if (isBetween(number, 65, 70)){
+            return "B-";
+        }else if (isBetween(number, 70, 75)){
+            return "B";
+        }else if (isBetween(number, 75, 80)){
+            return "B+";
+        }else if (isBetween(number, 80, 85)){
+            return "A-";
+        }else if (isBetween(number, 85, 90)){
+            return "A";
+        }else{
+            return "A+";
+        }
+    }
+
+    //this method simply returns true if num is between x(inclusive) and y(exclusive)
+    private boolean isBetween(double num, double x, double y){
+        return x <= num && num <y;
+
+    }
+
+    //a method that toggles the visibility of the elements of a particular category
+    //For this to work at the moment, a rigid structure must be maintained
+    public void toggleElementsVisibility(View v){
+        LinearLayout parent = (LinearLayout) v.getParent().getParent();
+        LinearLayout toHide = (LinearLayout) parent.getChildAt(parent.getChildCount() - 1);
+
+        int visibility = toHide.getVisibility();
+
+        String stopper = new String();
+        if(visibility != 0){
+            toHide.setVisibility(View.VISIBLE);
+        }else {
+            toHide.setVisibility(View.GONE);
         }
     }
 

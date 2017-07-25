@@ -67,7 +67,8 @@
 
                             android:text="ToggleButton"
                             android:textOff="▼"
-                            android:textOn="▲" />
+                            android:textOn="▲"
+                            android:onClick="toggleElementsVisibility"/>
 
                     </LinearLayout>
 
@@ -111,7 +112,8 @@
 
                             android:text="ToggleButton"
                             android:textOff="▼"
-                            android:textOn="▲" />
+                            android:textOn="▲"
+                            android:onClick="toggleElementsVisibility"/>
 
                     </LinearLayout>
 
@@ -155,7 +157,8 @@
 
                             android:text="ToggleButton"
                             android:textOff="▼"
-                            android:textOn="▲" />
+                            android:textOn="▲"
+                            android:onClick="toggleElementsVisibility"/>
 
                     </LinearLayout>
 
@@ -200,7 +203,8 @@
 
                             android:text="ToggleButton"
                             android:textOff="▼"
-                            android:textOn="▲" />
+                            android:textOn="▲" android:onClick="toggleElementsVisibility"
+                            />
 
                     </LinearLayout>
 
