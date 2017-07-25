@@ -205,16 +205,16 @@ public class PaperGpaCalc extends AppCompatActivity {
     //this method removes the last element from one of these arrays
     private void popElementFromArray(String groupName){
         switch (groupName){
-            case "labElement":
+            case "lab":
                 labElements.remove(labElements.size() - 1);
                 break;
-            case "assignmentElement":
+            case "assignment":
                 assignmentElements.remove(assignmentElements.size() - 1);
                 break;
-            case "testElement":
+            case "test":
                 testElements.remove(testElements.size() - 1);
                 break;
-            case "examElement":
+            case "exam":
                 examElements.remove(examElements.size() - 1);
                 break;
         }
