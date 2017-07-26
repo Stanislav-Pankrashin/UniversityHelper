@@ -1,5 +1,6 @@
 package com.self_employed.stase.universityhelper;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.text.DecimalFormat;
@@ -230,9 +232,16 @@ public class PaperGpaCalc extends AppCompatActivity {
         //iterate through each collection
         for(ArrayList<PaperGpaElement> e: masterArray){
             for(PaperGpaElement i: e){
-                marks += i.getContributionToTotal();
-                totalWorth += i.getWeight();
-
+                double toAdd = i.getContributionToTotal();
+                //if the method returns -1, it signifies that an improper fraction has been put into the interface.
+                //and that is has not been caught earlier
+                if (toAdd == -1){
+                    displayToast("There was an improper fraction/s, these have been cleared.");
+                    marks += 0;
+                }else {
+                    marks += toAdd;
+                    totalWorth += i.getWeight();
+                }
             }
         }
 
@@ -289,7 +298,6 @@ public class PaperGpaCalc extends AppCompatActivity {
 
         int visibility = toHide.getVisibility();
 
-        String stopper = new String();
         if(visibility != 0){
             toHide.setVisibility(View.VISIBLE);
         }else {
@@ -303,5 +311,13 @@ public class PaperGpaCalc extends AppCompatActivity {
         getSpinners();
         setSpinnerChoices();
         setSpinnerListeners();
+    }
+
+    public void displayToast(String message){
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, message, duration);
+        toast.show();
     }
 }
