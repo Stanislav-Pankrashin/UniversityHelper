@@ -1,6 +1,7 @@
 package com.self_employed.stase.universityhelper;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -231,16 +232,20 @@ public class PaperGpaCalc extends AppCompatActivity {
 
         //iterate through each collection
         for(ArrayList<PaperGpaElement> e: masterArray){
-            for(PaperGpaElement i: e){
+            for(PaperGpaElement i: e) {
                 double toAdd = i.getContributionToTotal();
                 //if the method returns -1, it signifies that an improper fraction has been put into the interface.
                 //and that is has not been caught earlier
-                if (toAdd == -1){
+                //if the method returns -1, that means that one of the boxes has not been filled out
+                if (toAdd == -1) {
                     displayToast("There was an improper fraction/s, these have been cleared.");
-                    marks += 0;
-                }else {
+                    i.layout.setBackgroundColor(Color.RED);
+                }else if(toAdd == -2){
+                    i.layout.setBackgroundColor(Color.WHITE);
+                }else{
                     marks += toAdd;
                     totalWorth += i.getWeight();
+                    i.layout.setBackgroundColor(Color.WHITE);
                 }
             }
         }

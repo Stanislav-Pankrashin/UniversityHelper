@@ -9,7 +9,7 @@ import android.widget.TextView;
 //This class is essentially a data-structure for managing elements in the page
 public class PaperGpaElement {
 
-    private LinearLayout layout;
+    public LinearLayout layout;
     private int layoutId;
     private TextView label;
     private RadioButton check;
@@ -63,14 +63,18 @@ public class PaperGpaElement {
 
         try {
             amount = Double.parseDouble(this.amount.getText().toString());
-        }catch (Exception e){}
+        }catch (Exception e){
+            return true;
+        }
 
         try {
             outOf = Double.parseDouble(this.outOf.getText().toString());
-        }catch (Exception e){}
+        }catch (Exception e){
+            return true;
+        }
 
         if(amount == -1 || outOf == -1){
-            return true;
+            return false;
         }
 
         double fraction = amount / outOf;
@@ -103,7 +107,7 @@ public class PaperGpaElement {
             double contribution = (amount / outOf) * weight;
             return contribution;
         }catch (Exception e){
-            return 0;
+            return -2;
         }
     }
 
