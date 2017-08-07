@@ -6,50 +6,44 @@
     android:orientation="horizontal">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="54dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="lab#" />
 
     <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:text="Completed" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="63dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="Grade:" />
 
     <EditText
-        android:layout_width="31dp"
+        android:layout_width="58dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="17dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="/" />
 
     <EditText
-        android:layout_width="34dp"
+        android:layout_width="66dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="numberDecimal"
-        android:layout_weight="0.65" />
+        android:inputType="numberDecimal" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="76dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="Weighting:" />
 
     <EditText
-        android:layout_width="39dp"
+        android:layout_width="51dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="%"
