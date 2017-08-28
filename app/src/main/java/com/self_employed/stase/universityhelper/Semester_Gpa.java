@@ -31,14 +31,6 @@ public class Semester_Gpa extends AppCompatActivity {
 
         layout = (LinearLayout) findViewById(R.id.main_layout);
 
-        //add a back button TODO
-        try {
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getActionBar().setHomeButtonEnabled(true);
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-        }catch (Exception e){}
-
-
         //populate the default number of sliders
         for(int i = 1; i <= DEFAULT_NUM_PAPERS; i++){
             addSlider(layout);
@@ -46,9 +38,6 @@ public class Semester_Gpa extends AppCompatActivity {
         //gets all current sliders on the page
         populateSliders();
         addChangeListeners();
-
-
-
     }
 
     //This method populates the ArrayList with all the current sliders on the page

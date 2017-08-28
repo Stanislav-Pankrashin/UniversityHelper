@@ -94,11 +94,10 @@ public class PaperGpaElement {
         try {
             //first check that the fraction is valid
             boolean isValid = checkFraction();
-            if(!isValid){
+            if(!isValid) {
                 //returning -1 signifies that there were improper values in the fraction.
                 return -1;
             }
-
 
             double amount = Double.parseDouble(this.amount.getText().toString());
             double outOf = Double.parseDouble(this.outOf.getText().toString());

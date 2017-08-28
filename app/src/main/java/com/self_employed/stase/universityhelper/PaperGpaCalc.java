@@ -4,12 +4,14 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,8 +45,61 @@ public class PaperGpaCalc extends AppCompatActivity {
         //add functionality to the calculate button
         setUpCalculate();
 
+        //add functionality to the seekBar
+        SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
+        addSeekBarListener(sb);
+
         //set up the data collection arrays
         initialiseDataArrays();
+    }
+    //This method adds a setOnSeekBarChangeListener to the provided Seekbar
+    private void addSeekBarListener(SeekBar e){
+        e.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //first get the corresponding grade for the seekbar progress
+                String grade = getGrade(progress);
+                String GPA = getGPA(progress);
+
+                //then it retrieves that SeekBar
+                TextView targetTextView = (TextView) findViewById(R.id.targetGradeText);
+
+                //then, set the new text
+                targetTextView.setText("Target Grade" + ": " + grade + " (" + GPA + ")");
+
+            }
+            // a method which returns the corresponding grade for the progress value of the SeekBar
+            private String getGrade(int progress){
+
+                String[] grades = {"D- D D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A", "A+"};
+
+                try{
+                    return grades[progress];
+                }catch (Exception e){
+                    return "ERROR";
+                }
+            }
+
+            private String getGPA(int progress){
+                String[] grades = {"0.0", "1.0", "2.0", "3.0", "4.0", "5.0", "6.0", "7.0", "8.0", "9.0"};
+
+                try{
+                    return grades[progress];
+                }catch (Exception e){
+                    return "ERROR";
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //TODO
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //TODO
+            }
+        });
     }
 
     //this method initialises the data collection arrays
@@ -174,7 +229,7 @@ public class PaperGpaCalc extends AppCompatActivity {
 
         TextView tv = (TextView) newView.getChildAt(0);
         //set the correct text
-        tv.setText(groupName + index + 1 + ":");
+        tv.setText(groupName + (index + 1) + ":");
         //set the id for the entire element
         newView.setId(IdGetter.getter().getId(groupName + "Element", index + 1));
 
@@ -236,16 +291,25 @@ public class PaperGpaCalc extends AppCompatActivity {
                 double toAdd = i.getContributionToTotal();
                 //if the method returns -1, it signifies that an improper fraction has been put into the interface.
                 //and that is has not been caught earlier
-                //if the method returns -1, that means that one of the boxes has not been filled out
+                //if the method returns -2, that means that one of the boxes has not been filled out
                 if (toAdd == -1) {
                     displayToast("There was an improper fraction/s, these have been cleared.");
                     i.layout.setBackgroundColor(Color.RED);
+                    LinearLayout l =(LinearLayout) i.layout.getParent();
+                    l = (LinearLayout) l.getParent();
+                    l.setBackgroundColor(Color.RED);
                 }else if(toAdd == -2){
                     i.layout.setBackgroundColor(Color.WHITE);
+                    LinearLayout l =(LinearLayout) i.layout.getParent();
+                    l = (LinearLayout) l.getParent();
+                    l.setBackgroundColor(Color.WHITE);
                 }else{
                     marks += toAdd;
                     totalWorth += i.getWeight();
                     i.layout.setBackgroundColor(Color.WHITE);
+                    LinearLayout l =(LinearLayout) i.layout.getParent();
+                    l = (LinearLayout) l.getParent();
+                    l.setBackgroundColor(Color.WHITE);
                 }
             }
         }
@@ -261,6 +325,11 @@ public class PaperGpaCalc extends AppCompatActivity {
                                             "Total marks to total %s", currentPercentage,getGrade(percentage) , rawPercentage);
 
         output.setText(outputText);
+
+    }
+
+    private void calculateTarget(){
+
 
     }
 
