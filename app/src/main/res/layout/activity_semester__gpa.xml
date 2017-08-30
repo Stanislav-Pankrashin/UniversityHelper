@@ -72,12 +72,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
 
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp"
-            android:id="@+id/linearLayout2">
+            android:id="@+id/linearLayout2"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/customborder">
 
             <Button
                 android:id="@+id/addSlider"
@@ -105,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="bottom"
-                android:text="Your Gpa for this semester is: 4.000"
+                android:text="Semester Gpa Is: 4.0"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="480dp" />
         </LinearLayout>

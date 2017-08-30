@@ -229,8 +229,11 @@ public class PaperGpaCalc extends AppCompatActivity {
 
         TextView tv = (TextView) newView.getChildAt(0);
         //set the correct text
-        tv.setText(groupName + (index + 1) + ":");
+        String capitalisedName = groupName.substring(0,1).toUpperCase() + groupName.substring(1);
+        tv.setText(capitalisedName + " " + (index + 1) + ":");
+
         //set the id for the entire element
+
         newView.setId(IdGetter.getter().getId(groupName + "Element", index + 1));
 
         parent.addView(newView, index);
@@ -299,14 +302,14 @@ public class PaperGpaCalc extends AppCompatActivity {
                     l = (LinearLayout) l.getParent();
                     l.setBackgroundColor(Color.RED);
                 }else if(toAdd == -2){
-                    i.layout.setBackgroundColor(Color.WHITE);
+                    i.layout.setBackground(getDrawable(R.drawable.customborder));
                     LinearLayout l =(LinearLayout) i.layout.getParent();
                     l = (LinearLayout) l.getParent();
                     l.setBackgroundColor(Color.WHITE);
                 }else{
                     marks += toAdd;
                     totalWorth += i.getWeight();
-                    i.layout.setBackgroundColor(Color.WHITE);
+                    i.layout.setBackground(getDrawable(R.drawable.customborder));
                     LinearLayout l =(LinearLayout) i.layout.getParent();
                     l = (LinearLayout) l.getParent();
                     l.setBackgroundColor(Color.WHITE);

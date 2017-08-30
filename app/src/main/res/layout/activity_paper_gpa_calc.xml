@@ -58,7 +58,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Number of labs/tutorials" />
+                            android:text="Labs/Tutorials:"
+                            android:textSize="24sp" />
 
                         <Spinner
                             android:id="@+id/labSpinner"
@@ -103,7 +104,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Number of Assignments" />
+                            android:text="Assignments:"
+                            android:textSize="24sp" />
 
                         <Spinner
                             android:id="@+id/assignmentSpinner"
@@ -148,7 +150,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Number of Tests" />
+                            android:text="Tests:"
+                            android:textSize="24sp" />
 
                         <Spinner
                             android:id="@+id/testSpinner"
@@ -194,7 +197,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Number of Exams" />
+                            android:text="Exams:"
+                            android:textSize="24sp" />
 
                         <Spinner
                             android:id="@+id/examSpinner"
@@ -231,6 +235,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
+            android:background="@drawable/customborder"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
 
@@ -238,7 +243,7 @@
                 android:id="@+id/targetGradeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Target Grade: B-" />
+                android:text="Target Grade: B- (4.0)" />
 
             <SeekBar
                 android:id="@+id/seekBar"
@@ -246,7 +251,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="9"
-                android:progress="3"
+                android:progress="4"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp" />
 

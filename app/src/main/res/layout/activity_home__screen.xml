@@ -31,7 +31,8 @@
             android:layout_row="0"
             android:layout_weight="1"
             android:onClick="buttonClicked"
-            android:text="Paper Grade Calculator" />
+            android:text="Paper Grade Calculator"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/button1"
@@ -41,7 +42,30 @@
             android:layout_row="0"
             android:layout_weight="1"
             android:onClick="buttonClicked"
-            android:text="Semester Gpa Calculator" />
+            android:text="Semester Gpa Calculator"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.20"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="174dp"
+                android:layout_height="match_parent"
+                android:text="About the Author"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Legal"
+                android:textSize="20sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

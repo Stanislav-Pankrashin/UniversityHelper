@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class PaperGpaElement {
 
     public LinearLayout layout;
+    private LinearLayout layoutSecondaryLayout;
     private int layoutId;
     private TextView label;
     private RadioButton check;
@@ -19,12 +20,13 @@ public class PaperGpaElement {
 
     public PaperGpaElement(LinearLayout layout){
         this.layout = layout;
+        this.layoutSecondaryLayout = (LinearLayout) layout.getChildAt(1);
         this.layoutId = layout.getId();
         this.label = (TextView) layout.getChildAt(0);
-        this.check = (RadioButton) layout.getChildAt(1);
-        this.amount = (EditText) layout.getChildAt(3);
-        this.outOf = (EditText) layout.getChildAt(5);
-        this.weight = (EditText) layout.getChildAt(7);
+        this.check = (RadioButton) layoutSecondaryLayout.getChildAt(0);
+        this.amount = (EditText) layoutSecondaryLayout.getChildAt(2);
+        this.outOf = (EditText) layoutSecondaryLayout.getChildAt(4);
+        this.weight = (EditText) layoutSecondaryLayout.getChildAt(6);
 
         //set the listeners to check for constraints
         this.setOnFocusChangeListener();

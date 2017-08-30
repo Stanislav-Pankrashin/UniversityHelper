@@ -2,49 +2,72 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    android:background="@drawable/customborder">
 
     <TextView
-        android:layout_width="54dp"
-        android:layout_height="wrap_content"
-        android:text="lab#" />
-
-    <RadioButton
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Completed" />
-
-    <TextView
-        android:layout_width="63dp"
-        android:layout_height="wrap_content"
-        android:text="Grade:" />
-
-    <EditText
-        android:layout_width="58dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
-
-    <TextView
-        android:layout_width="17dp"
-        android:layout_height="wrap_content"
-        android:text="/" />
-
-    <EditText
-        android:layout_width="54dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
-
-    <TextView
-        android:layout_width="76dp"
-        android:layout_height="wrap_content"
-        android:text="Weighting:" />
-
-    <EditText
+        android:id="@+id/textView28"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="%"
-        android:inputType="numberDecimal" />
+        android:layout_weight="1"
+        android:text="lab#"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Completed" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Grade:" />
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.95"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.36"
+            android:text="/" />
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.97"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.15"
+            android:text="Weighting:" />
+
+        <EditText
+            android:id="@+id/editText6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.81"
+            android:ems="10"
+            android:hint="%"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+
 </LinearLayout>

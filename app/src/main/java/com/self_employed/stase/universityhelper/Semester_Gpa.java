@@ -22,7 +22,7 @@ public class Semester_Gpa extends AppCompatActivity {
     final static private int DEFAULT_NUM_PAPERS = 4;
 
     LinearLayout layout;
-    ArrayList<SeekBar> seekBars;
+    ArrayList<SeekBar> seekBars = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +43,20 @@ public class Semester_Gpa extends AppCompatActivity {
     //This method populates the ArrayList with all the current sliders on the page
     private void populateSliders(){
 
-        seekBars = new ArrayList<>();
+        //object creation is expensive. so limit it where we can
+        seekBars = seekBars == null ? new ArrayList<SeekBar>() : seekBars;
+        //ensure arraylist is empty
+        seekBars.clear();
 
         double childCount = layout.getChildCount();
 
         //iterate through all children to get the sliders
-        //This is just a brute force method, anything that isnt a seek bar will fail and then wont be added to the ArrayList
         for(int i = 0; i < childCount; i++){
             Object child = layout.getChildAt(i);
-            try {
+
+            if(child instanceof SeekBar) {
                 seekBars.add((SeekBar) child);
-            }catch(Exception e) {}
+            }
         }
     }
 
