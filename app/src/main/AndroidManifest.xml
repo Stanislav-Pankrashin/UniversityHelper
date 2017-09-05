@@ -18,7 +18,9 @@
         <activity
             android:name=".Semester_Gpa"
             android:parentActivityName=".Home_Screen"></activity>
-        <activity android:name=".PaperGpaCalc"></activity>
+        <activity
+            android:name=".PaperGpaCalc"
+            android:parentActivityName=".Home_Screen"></activity>
     </application>
 
 </manifest>
