@@ -1,10 +1,11 @@
 package com.self_employed.stase.universityhelper;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +17,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +44,9 @@ public class PaperGpaCalc extends AppCompatActivity {
 
         //add functionality to the calculate button
         setUpCalculate();
+
+        //add functionality to the exam button
+        setUpExamCalculate();
 
         //add functionality to the seekBar
         SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
@@ -124,6 +127,17 @@ public class PaperGpaCalc extends AppCompatActivity {
                 PaperGpaCalc.this.calculateTotal();
             }
 
+        });
+    }
+
+    private void setUpExamCalculate(){
+        Button b = (Button) findViewById(R.id.examButton);
+
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PaperGpaCalc.this.calculateReqExam();
+            }
         });
     }
 
@@ -317,6 +331,11 @@ public class PaperGpaCalc extends AppCompatActivity {
             }
         }
 
+        if(totalWorth > 100){
+            displayToast("The total weight cannot be greater than 100");
+            return;
+        }
+
         double percentage = (marks / totalWorth) * 100;
 
         //then do some formatting with the answer
@@ -331,9 +350,114 @@ public class PaperGpaCalc extends AppCompatActivity {
 
     }
 
-    private void calculateTarget(){
+    //This method gets and displays the amount you need in the final exam/ what is left for the target grade
+    private void calculateReqExam(){
+        double marks = 0;
+        double totalWorth = 0;
+
+        //iterate through each collection
+        for(ArrayList<PaperGpaElement> e: masterArray){
+            for(PaperGpaElement i: e) {
+                double toAdd = i.getContributionToTotal();
+                //if the method returns -1, it signifies that an improper fraction has been put into the interface.
+                //and that is has not been caught earlier
+                //if the method returns -2, that means that one of the boxes has not been filled out
+                if (toAdd == -1) {
+                    displayToast("There was an improper fraction/s, these have been cleared.");
+                    i.layout.setBackgroundColor(Color.RED);
+                    LinearLayout l =(LinearLayout) i.layout.getParent();
+                    l = (LinearLayout) l.getParent();
+                    l.setBackgroundColor(Color.RED);
+                }else if(toAdd == -2){
+                    i.layout.setBackground(getDrawable(R.drawable.customborder));
+                    LinearLayout l =(LinearLayout) i.layout.getParent();
+                    l = (LinearLayout) l.getParent();
+                    l.setBackgroundColor(Color.WHITE);
+                }else{
+                    marks += toAdd;
+                    totalWorth += i.getWeight();
+                    i.layout.setBackground(getDrawable(R.drawable.customborder));
+                    LinearLayout l =(LinearLayout) i.layout.getParent();
+                    l = (LinearLayout) l.getParent();
+                    l.setBackgroundColor(Color.WHITE);
+                }
+            }
+        }
+
+        if(totalWorth > 100){
+            displayModal("Weight Limit Exceeded", "There is a total weight greater than 100\n" +
+                    "please check and fix this.");
+            return;
+        }
+
+        if(totalWorth == 100){
+            displayModal("No calculation needed", "there is already a total weight of 100\n" +
+                    "There is no additional calculation needed");
+            return;
+        }
+
+        double currentPercentage = (marks / totalWorth) * 100;
+
+        double targetPercentage = getGpaPercentage(getSeekBarValue());
+
+        double requiredMarks = targetPercentage - marks;
+
+        double marksLeft = 100 - totalWorth;
+
+        double markNeededOnExam = (requiredMarks / marksLeft) * 100;
+
+        DecimalFormat df = new DecimalFormat("#.00");
+
+        String output = "You are at: " + df.format(currentPercentage) + "%\n" +
+                        "Desired Grade: " + df.format(targetPercentage) + "%" + " (" + getGrade(targetPercentage) + ")\n" +
+                        "Grade needed on final exam: " + df.format(markNeededOnExam) + "%" + " (" + getGrade(markNeededOnExam) + ")\n";
+        if(markNeededOnExam > 100){
+            output += "\nUnfortunately you cannot achieve this grade";
+        }
+
+        displayModal("Grade Breakdown", output);
 
 
+    }
+
+    //this method returns the value of the seek bar
+    private double getSeekBarValue(){
+        SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
+        double value = sb.getProgress();
+        return value;
+
+    }
+
+    private void displayModal(String title, String message){
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage(message)
+                .setTitle(title);
+
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //do nothing
+            }
+        });
+
+        // 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+    }
+
+    private double getGpaPercentage(double seekBarValue){
+        try{
+            double[] grades = {49, 50, 55, 60, 65, 70, 75, 80, 85, 90};
+            //the casting of double to int removes all decimal numbers, rounded down
+            return grades[(int) seekBarValue];
+        }catch (Exception e){
+            return 0;
+        }
     }
 
     //this method returns the grade symbol out of a number out of 100

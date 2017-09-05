@@ -109,13 +109,13 @@
 
                         <Spinner
                             android:id="@+id/assignmentSpinner"
-                            android:layout_width="96dp"
+                            android:layout_width="98dp"
                             android:layout_height="match_parent" />
 
                         <ToggleButton
                             android:id="@+id/toggleButton5"
                             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                            android:layout_width="53dp"
+                            android:layout_width="52dp"
                             android:layout_height="wrap_content"
 
                             android:onClick="toggleElementsVisibility"
@@ -155,13 +155,13 @@
 
                         <Spinner
                             android:id="@+id/testSpinner"
-                            android:layout_width="94dp"
+                            android:layout_width="98dp"
                             android:layout_height="match_parent" />
 
                         <ToggleButton
                             android:id="@+id/toggleButton3"
                             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                            android:layout_width="54dp"
+                            android:layout_width="52dp"
                             android:layout_height="wrap_content"
 
                             android:onClick="toggleElementsVisibility"
@@ -202,13 +202,13 @@
 
                         <Spinner
                             android:id="@+id/examSpinner"
-                            android:layout_width="94dp"
+                            android:layout_width="98dp"
                             android:layout_height="match_parent" />
 
                         <ToggleButton
                             android:id="@+id/toggleButton4"
                             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                            android:layout_width="53dp"
+                            android:layout_width="52dp"
                             android:layout_height="wrap_content"
 
                             android:onClick="toggleElementsVisibility"
@@ -255,11 +255,25 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp" />
 
-            <Button
-                android:id="@+id/calculateButton"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Calculate Unknowns" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/calculateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calculate Grade" />
+
+                <Button
+                    android:id="@+id/examButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.22"
+                    android:text="Required Exam Mark" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/outputText"
