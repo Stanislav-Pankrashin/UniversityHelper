@@ -1,8 +1,6 @@
 package com.self_employed.stase.universityhelper;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,7 +25,7 @@ public class Semester_Gpa extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_semester__gpa);
+        setContentView(R.layout.activity_semester_gpa);
 
         layout = (LinearLayout) findViewById(R.id.main_layout);
 
@@ -52,10 +50,11 @@ public class Semester_Gpa extends AppCompatActivity {
 
         //iterate through all children to get the sliders
         for(int i = 0; i < childCount; i++){
-            Object child = layout.getChildAt(i);
-
-            if(child instanceof SeekBar) {
-                seekBars.add((SeekBar) child);
+            //we only want to look at the elements that are linearLayouts
+            Object item = layout.getChildAt(i);
+            if(item instanceof LinearLayout) {
+                SeekBar sb = (SeekBar) ((LinearLayout)item).getChildAt(1);
+                seekBars.add(sb);
             }
         }
     }
@@ -144,7 +143,7 @@ public class Semester_Gpa extends AppCompatActivity {
         String grade = getGrade(gpa);
 
         TextView output = (TextView) findViewById(R.id.Output);
-        output.setText("Semester GPA is: " + df.format(gpa) + " (" + grade + ")");
+        output.setText(df.format(gpa) + " (" + grade + ")");
     }
 
     private String getGrade(double gpa){
@@ -197,33 +196,25 @@ public class Semester_Gpa extends AppCompatActivity {
         //then format the new index for the id selection
         DecimalFormat df = new DecimalFormat("#");
         String newViewIndex = df.format(seekBars.size() + 1);
-        //Then create the new textView
-        //the textView is inflated from a texView resource
-        TextView newView = (TextView) LayoutInflater.from(this).inflate(R.layout.sem_gpa_textview_label, null);
 
-        newView.setText("Paper " + newViewIndex + ": B-" + " (4.0)");
+        //create a new element
+        LinearLayout newLayout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.sem_gpa_paper_element, null);
 
+        //set the text
+        ((TextView)newLayout.getChildAt(0)).setText("Paper " + newViewIndex + ": B-" + " (4.0)");
+
+        //set the id
         int newId = IdGetter.getter().getId("textView", Integer.parseInt(newViewIndex));
-        newView.setId(newId);
+        newLayout.getChildAt(0).setId(newId);
 
-        layout.addView(newView, index);
-
-        //finally we increment the index for the new SeekBar
-        index++;
-
-        //Now we create the new SeekBar
-        //the seekbar is inflated from a SeekBar resource
-        SeekBar newBar = (SeekBar) LayoutInflater.from(this).inflate(R.layout.sem_gpa_seekbar, null);
-
+        //set up the seekBar
         newId = IdGetter.getter().getId("seekBar", Integer.parseInt(newViewIndex));
-        newBar.setId(newId);
+        newLayout.getChildAt(1).setId(newId);
+        addSeekBarListener((SeekBar)newLayout.getChildAt(1));
 
-        //add the listener
-        addSeekBarListener(newBar);
+        //add the element to the view
+        layout.addView(newLayout);
 
-        layout.addView(newBar, index);
-
-        //Finally we update the sliders arrayList
         populateSliders();
 
         //and then update the GPA
@@ -239,32 +230,13 @@ public class Semester_Gpa extends AppCompatActivity {
             return;
         }
 
-        //then, find the index that the insertPoint is at
-        int index = 0;
+        //find the number of elements
         int childCount = layout.getChildCount();
-
-        for(int i = 0; i < childCount; i++) {
-            View child = layout.getChildAt(i);
-
-            //if an element does not have an id (which is bad practice), a try catch will make sure there are no errors
-            String id;
-            try{
-                id = getResources().getResourceEntryName(child.getId());
-            }catch(Exception e){
-                id = "NONE";
-            }
-
-            // this finds the index of the insert point
-            if (id.equals("insertPoint")) {
-                index = i;
-                break;
-            }
-        }
-        //Then remove the last textView label and Seekbar
-        layout.removeViewAt(index-1);
-        layout.removeViewAt(index - 2);
-        //then update ui
+        //Then remove the last element
+        layout.removeViewAt(childCount-1);
+        //then update ui, and the data collections
         populateSliders();
+        //update the result
         calculate_gpa(new View(this));
 
     }

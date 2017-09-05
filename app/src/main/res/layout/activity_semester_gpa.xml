@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+
     tools:context="com.self_employed.stase.universityhelper.Semester_Gpa">
 
     <RelativeLayout
@@ -35,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="This is a calculator to calculate your Gpa for a semester"
+                android:textColor="@color/buttonText"
                 android:textSize="50px" />
 
             <ScrollView
@@ -79,25 +82,31 @@
             android:id="@+id/linearLayout2"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:background="@drawable/customborder">
+            android:background="@drawable/elementbackground">
 
             <Button
                 android:id="@+id/addSlider"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="addSlider"
                 android:text="+ Add\n Paper"
+                android:textSize="20sp"
+                android:textColor="@color/buttonText"
+                android:background="@drawable/mainbutton"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="0dp" />
 
             <Button
                 android:id="@+id/RemoveSlider"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="removeSlider"
                 android:text="- Remove Paper"
+                android:textSize="20sp"
+                android:textColor="@color/buttonText"
+                android:background="@drawable/mainbutton"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="0dp" />
 
@@ -106,8 +115,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/elementbackground"
                 android:gravity="bottom"
-                android:text="Semester Gpa Is: 4.0"
+                android:text="4.000 (B-)"
+                android:textSize="30sp"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="480dp" />
         </LinearLayout>

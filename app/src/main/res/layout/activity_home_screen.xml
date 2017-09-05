@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.self_employed.stase.universityhelper.Home_Screen">
@@ -9,6 +10,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="10dp"
         android:orientation="vertical"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
@@ -24,46 +26,53 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="92dp"
-            android:layout_column="1"
-            android:layout_row="0"
-            android:layout_weight="1"
-            android:onClick="buttonClicked"
-            android:text="Paper Grade Calculator"
-            android:textSize="24sp" />
-
-        <Button
             android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="92dp"
-            android:layout_column="0"
-            android:layout_row="0"
             android:layout_weight="1"
+            android:background="@drawable/mainbutton"
             android:onClick="buttonClicked"
             android:text="Semester Gpa Calculator"
+            android:textColor="@color/buttonText"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:layout_weight="1"
+            android:background="@drawable/mainbutton"
+            android:onClick="buttonClicked"
+            android:text="Paper Grade Calculator"
+            android:textColor="@color/buttonText"
             android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:layout_weight="1.20"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="174dp"
+                android:layout_width="164dp"
                 android:layout_height="match_parent"
+                android:background="@drawable/mainbutton"
                 android:text="About the Author"
+                android:onClick="buttonClicked"
+                android:textColor="@color/buttonText"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/mainbutton"
                 android:text="Legal"
+                android:onClick="buttonClicked"
+                android:textColor="@color/buttonText"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>

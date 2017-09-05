@@ -311,22 +311,22 @@ public class PaperGpaCalc extends AppCompatActivity {
                 //if the method returns -2, that means that one of the boxes has not been filled out
                 if (toAdd == -1) {
                     displayToast("There was an improper fraction/s, these have been cleared.");
-                    i.layout.setBackgroundColor(Color.RED);
+                    i.layout.setBackground(getDrawable(R.drawable.elementbackgrounderror));
                     LinearLayout l =(LinearLayout) i.layout.getParent();
                     l = (LinearLayout) l.getParent();
-                    l.setBackgroundColor(Color.RED);
+                    l.setBackground(getDrawable(R.drawable.elementbackgrounderror));
                 }else if(toAdd == -2){
-                    i.layout.setBackground(getDrawable(R.drawable.customborder));
+                    i.layout.setBackground(getDrawable(R.drawable.elementbackground));
                     LinearLayout l =(LinearLayout) i.layout.getParent();
                     l = (LinearLayout) l.getParent();
-                    l.setBackgroundColor(Color.WHITE);
+                    l.setBackground(getDrawable(R.drawable.elementbackground));
                 }else{
                     marks += toAdd;
                     totalWorth += i.getWeight();
-                    i.layout.setBackground(getDrawable(R.drawable.customborder));
+                    i.layout.setBackground(getDrawable(R.drawable.elementbackground));
                     LinearLayout l =(LinearLayout) i.layout.getParent();
                     l = (LinearLayout) l.getParent();
-                    l.setBackgroundColor(Color.WHITE);
+                    l.setBackground(getDrawable(R.drawable.elementbackground));
                 }
             }
         }
@@ -364,22 +364,22 @@ public class PaperGpaCalc extends AppCompatActivity {
                 //if the method returns -2, that means that one of the boxes has not been filled out
                 if (toAdd == -1) {
                     displayToast("There was an improper fraction/s, these have been cleared.");
-                    i.layout.setBackgroundColor(Color.RED);
+                    i.layout.setBackground(getDrawable(R.drawable.elementbackgrounderror));
                     LinearLayout l =(LinearLayout) i.layout.getParent();
                     l = (LinearLayout) l.getParent();
-                    l.setBackgroundColor(Color.RED);
+                    l.setBackground(getDrawable(R.drawable.elementbackgrounderror));
                 }else if(toAdd == -2){
-                    i.layout.setBackground(getDrawable(R.drawable.customborder));
+                    i.layout.setBackground(getDrawable(R.drawable.elementbackground));
                     LinearLayout l =(LinearLayout) i.layout.getParent();
                     l = (LinearLayout) l.getParent();
-                    l.setBackgroundColor(Color.WHITE);
+                    l.setBackground(getDrawable(R.drawable.elementbackground));
                 }else{
                     marks += toAdd;
                     totalWorth += i.getWeight();
-                    i.layout.setBackground(getDrawable(R.drawable.customborder));
+                    i.layout.setBackground(getDrawable(R.drawable.elementbackground));
                     LinearLayout l =(LinearLayout) i.layout.getParent();
                     l = (LinearLayout) l.getParent();
-                    l.setBackgroundColor(Color.WHITE);
+                    l.setBackground(getDrawable(R.drawable.elementbackground));
                 }
             }
         }

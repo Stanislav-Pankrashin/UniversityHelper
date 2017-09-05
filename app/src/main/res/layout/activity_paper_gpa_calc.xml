@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context="com.self_employed.stase.universityhelper.PaperGpaCalc">
 
     <RelativeLayout
@@ -44,6 +45,7 @@
                     android:id="@+id/labsContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/elementbackground"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -91,6 +93,7 @@
                     android:id="@+id/assignmentsContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/elementbackground"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -137,6 +140,7 @@
                     android:id="@+id/testsContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/elementbackground"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -184,6 +188,7 @@
                     android:id="@+id/examsContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/elementbackground"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -235,7 +240,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
-            android:background="@drawable/customborder"
+            android:background="@drawable/elementbackground"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
 
@@ -265,14 +270,18 @@
                     android:id="@+id/calculateButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Calculate Grade" />
+                    android:background="@drawable/mainbutton"
+                    android:text="Calculate Grade"
+                    android:textColor="@color/buttonText" />
 
                 <Button
                     android:id="@+id/examButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.22"
-                    android:text="Required Exam Mark" />
+                    android:background="@drawable/mainbutton"
+                    android:text="Required Exam Mark"
+                    android:textColor="@color/buttonText" />
             </LinearLayout>
 
             <TextView
