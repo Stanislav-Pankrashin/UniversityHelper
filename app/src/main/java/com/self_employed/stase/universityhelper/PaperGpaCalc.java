@@ -408,7 +408,9 @@ public class PaperGpaCalc extends AppCompatActivity {
 
         DecimalFormat df = new DecimalFormat("#.00");
 
-        String output = "You are at: " + df.format(currentPercentage) + "%\n" +
+        String output = "You are at: " + df.format(currentPercentage) + "%" + " (" + getGrade(currentPercentage) + ")\n" +
+                        "Current total weight entered: " + df.format(totalWorth) + "%\n" +
+                        "Weight to be calculated: " + df.format(100 - totalWorth) + "%\n\n" +
                         "Desired Grade: " + df.format(targetPercentage) + "%" + " (" + getGrade(targetPercentage) + ")\n" +
                         "Grade needed on final exam: " + df.format(markNeededOnExam) + "%" + " (" + getGrade(markNeededOnExam) + ")\n";
         if(markNeededOnExam > 100){
