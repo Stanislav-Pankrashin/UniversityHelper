@@ -235,6 +235,11 @@ public class PaperGpaCalc extends AppCompatActivity {
                 inflateElement(parent, insertIndex, groupName);
             }
         }
+
+        //finally, is the requested number of elements is 0, make sure that the background is not the error background
+        if(count == 0){
+            ((LinearLayout)parent.getParent()).setBackground(getDrawable(R.drawable.elementbackground));
+        }
     }
 
     //this method inflates a new element in one of the tabs

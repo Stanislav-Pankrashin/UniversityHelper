@@ -7,9 +7,9 @@ android {
         applicationId "com.self_employed.stase.universityhelper"
         minSdkVersion 22
         targetSdkVersion 25
-        versionName '1.01'
+        versionName '1.02'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 2
+        versionCode 3
     }
     buildTypes {
         release {
